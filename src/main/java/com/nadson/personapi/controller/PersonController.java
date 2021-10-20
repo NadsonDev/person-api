@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nadson.personapi.dto.request.PersonDTO;
 import com.nadson.personapi.dto.response.MessageResponseDTO;
-import com.nadson.personapi.entity.Person;
 import com.nadson.personapi.service.PersonService;
 
 @RestController
@@ -29,7 +28,8 @@ public class PersonController {
 	}
 	
 	@GetMapping
-	public List<Person> listPeople() {
+	@ResponseStatus(HttpStatus.OK)
+	public List<PersonDTO> listPeople() {
 		return personService.listPeople();
 	}
 	
