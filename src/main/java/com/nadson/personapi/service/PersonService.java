@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.nadson.personapi.dto.request.PersonDTO;
 import com.nadson.personapi.dto.response.MessageResponseDTO;
 import com.nadson.personapi.entity.Person;
+import com.nadson.personapi.exception.PersonNotFoundException;
 import com.nadson.personapi.mapper.PersonMapper;
 import com.nadson.personapi.repository.PersonRepository;
 
@@ -37,6 +38,14 @@ public class PersonService {
 				.builder()
 				.message("Created person with ID " + savedPerson.getId())
 				.build();
+	}
+
+
+	public PersonDTO findById(Long id) throws PersonNotFoundException {
+		Person person = personRepository.findById(id)
+				.orElseThrow(()-> new PersonNotFoundException(id));
+		
+		return personMapper.toDTO(person);
 	}
 	
 }
