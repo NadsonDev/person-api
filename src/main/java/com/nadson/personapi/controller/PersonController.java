@@ -21,15 +21,14 @@ import com.nadson.personapi.dto.response.MessageResponseDTO;
 import com.nadson.personapi.exception.PersonNotFoundException;
 import com.nadson.personapi.service.PersonService;
 
+import lombok.AllArgsConstructor;
+
 @RestController
 @RequestMapping("/api/v1/people")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonController {
 	
 	PersonService personService;
-	@Autowired
-	public PersonController(PersonService personService) {
-		this.personService = personService;
-	}
 	
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)

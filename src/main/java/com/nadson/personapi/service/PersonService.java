@@ -13,17 +13,14 @@ import com.nadson.personapi.exception.PersonNotFoundException;
 import com.nadson.personapi.mapper.PersonMapper;
 import com.nadson.personapi.repository.PersonRepository;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonService {
 
 	private PersonRepository personRepository;
 	private final PersonMapper personMapper = PersonMapper.INSTANCE;
-	
-	@Autowired
-	public PersonService(PersonRepository personRepository) {
-		this.personRepository = personRepository;
-	}
-	
 	
 	public List<PersonDTO> listAllPeople() {
 		List<Person> allPeople = personRepository.findAll();
@@ -64,6 +61,4 @@ public class PersonService {
 				.message(message + id)
 				.build();
 	}
-
-
 }
