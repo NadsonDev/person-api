@@ -1,4 +1,4 @@
-package com.nadson.personapi.mapper;
+package com.nadson.personapi.dto.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

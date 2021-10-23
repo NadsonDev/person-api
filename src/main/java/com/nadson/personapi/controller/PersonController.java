@@ -33,7 +33,7 @@ public class PersonController {
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	public List<PersonDTO> listAllPeople() {
-		return personService.listAllPeople();
+		return personService.listAll();
 	}
 	
 	@GetMapping("/{id}")
@@ -44,18 +44,18 @@ public class PersonController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO){
-		return personService.createPerson(personDTO);
+		return personService.create(personDTO);
 	}
 	
 	@PutMapping("/{id}")
 	@ResponseStatus
 	public MessageResponseDTO updatePerson(@PathVariable Long id, @RequestBody PersonDTO personDTO) throws PersonNotFoundException {
-		return personService.updatePerson(id, personDTO);
+		return personService.update(id, personDTO);
 	}
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletePerson(@PathVariable Long id) throws PersonNotFoundException {
-		personService.deletePerson(id);
+		personService.delete(id);
 	}
 }

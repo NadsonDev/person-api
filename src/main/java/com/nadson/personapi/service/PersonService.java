@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nadson.personapi.dto.mapper.PersonMapper;
 import com.nadson.personapi.dto.request.PersonDTO;
 import com.nadson.personapi.dto.response.MessageResponseDTO;
 import com.nadson.personapi.entity.Person;
 import com.nadson.personapi.exception.PersonNotFoundException;
-import com.nadson.personapi.mapper.PersonMapper;
 import com.nadson.personapi.repository.PersonRepository;
 
 import lombok.AllArgsConstructor;
@@ -22,7 +22,7 @@ public class PersonService {
 	private PersonRepository personRepository;
 	private final PersonMapper personMapper = PersonMapper.INSTANCE;
 	
-	public List<PersonDTO> listAllPeople() {
+	public List<PersonDTO> listAll() {
 		List<Person> allPeople = personRepository.findAll();
 		return allPeople.stream().map(personMapper::toDTO).collect(Collectors.toList());
 	}
@@ -32,20 +32,20 @@ public class PersonService {
 		return personMapper.toDTO(personToFind);
 	}
 	
-	public MessageResponseDTO createPerson(PersonDTO personDTO){
+	public MessageResponseDTO create(PersonDTO personDTO){
 		Person personToCreate = personMapper.toModel(personDTO);
 		Person createdPerson = personRepository.save(personToCreate);
-		return createMessageResponse("Created person with ID ", createdPerson.getId());
+		return createMessageResponse("Person successfully created with ID ", createdPerson.getId());
 	}
 
-	public MessageResponseDTO updatePerson(Long id, PersonDTO personDTO) throws PersonNotFoundException{
+	public MessageResponseDTO update(Long id, PersonDTO personDTO) throws PersonNotFoundException{
 		verifyIfExists(id);
 		Person personToUpdate = personMapper.toModel(personDTO);
 		Person updatedPerson = personRepository.save(personToUpdate);
-		return createMessageResponse("Updated person with ID ", updatedPerson.getId());	
+		return createMessageResponse("Person successfully updated with ID ", updatedPerson.getId());	
 	}
 
-	public void deletePerson(Long id) throws PersonNotFoundException {
+	public void delete(Long id) throws PersonNotFoundException {
 		verifyIfExists(id);
 		personRepository.deleteById(id);	
 	}
