@@ -13,24 +13,29 @@ Connect with me at
 
 Also, you can use this Project as you wish, it's free!
 
-##Getting Started
+## Getting Started
 ## 
 
-###Prerequisites
+### Prerequisites
 To run this project in development mode, you'll need to have a basic enviroment with Java 11+ and Maven 3.6.0+ installed. To use the database, you'll need to have the MySQL installed and running on your machine at the default port(3306), and a empty database called person_api.
 
-###Installing
+### Installing
 Cloning the repository
 
+```shell script
 	$ git clone https://github.com/NadsonDev/person-api.git
-	
+```	
+```shell script	
 	$ cd person-api
+```	
 
 Installing the dependencies
 
+```shell script
 	$ mvn clean install 
-	
-##Running the Development environment
+```	
+
+## Running the Development environment
 Now, you'll need to change to development branch:
 
 ```shell script
@@ -43,7 +48,7 @@ With all dependencies installed, the Database running and the environment proper
 	$ mvn spring-boot:run 
 ```
 
-##Routes
+## Routes
 ## 
 The base URL is: <a href="http://localhost:8080/api/v1/" target="_blank">http://localhost:8080/api/v1/</a> 
 
