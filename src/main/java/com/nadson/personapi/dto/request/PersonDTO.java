@@ -7,17 +7,23 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.hateoas.RepresentationModel;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonDTO {
+@JsonIgnoreProperties(ignoreUnknown = true)
+@EqualsAndHashCode(callSuper=false)
+public class PersonDTO extends RepresentationModel<PersonDTO>{
 
 	private Long id;
 	
