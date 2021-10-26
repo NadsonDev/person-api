@@ -20,16 +20,18 @@ public class PersonMapperTest {
 
     @Test
     void testGivenPersonDTOThenReturnPersonEntity() {
-        PersonDTO personDTO = PersonUtils.createFakeDTO();
+        //Person comparation
+    	PersonDTO personDTO = PersonUtils.createFakeDTO();
         Person person = personMapper.toModel(personDTO);
-
+        
         assertEquals(personDTO.getFirstName(), person.getFirstName());
         assertEquals(personDTO.getLastName(), person.getLastName());
         assertEquals(personDTO.getCpf(), person.getCpf());
-
+        
+        //Phone comparation
         Phone phone = person.getPhones().get(0);
         PhoneDTO phoneDTO = personDTO.getPhones().get(0);
-
+        
         assertEquals(phoneDTO.getType(), phone.getType());
         assertEquals(phoneDTO.getNumber(), phone.getNumber());
     }
