@@ -1,10 +1,14 @@
 package com.nadson.personapi.utils;
 
-import java.time.LocalDate;
-import java.util.Collections;
-
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.nadson.personapi.dto.request.PersonDTO;
 import com.nadson.personapi.entity.Person;
+
+import java.time.LocalDate;
+import java.util.Collections;
 
 public class PersonUtils {
 
@@ -19,7 +23,7 @@ public class PersonUtils {
 				.firstName(FIRST_NAME)
 				.lastName(LAST_NAME)
 				.cpf(CPF_NUMBER)
-				.birthDate("10-10-2010")
+				.birthDate("16-10-1990")
 				.phones(Collections.singletonList(PhoneUtils.createFakeDTO()))
 				.build();
 	}
@@ -34,4 +38,17 @@ public class PersonUtils {
 				.phones(Collections.singletonList(PhoneUtils.createFakeEntity()))
 				.build();
 	}
+
+    public static String asJsonString(PersonDTO personDTO) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+            objectMapper.registerModules(new JavaTimeModule());
+
+            return objectMapper.writeValueAsString(personDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -20,7 +20,7 @@ import lombok.AllArgsConstructor;
 public class PersonService {
 
 	private PersonRepository personRepository;
-	private final PersonMapper personMapper = PersonMapper.INSTANCE;
+	private final PersonMapper personMapper;
 	
 	public List<PersonDTO> listAll() {
 		List<Person> allPeople = personRepository.findAll();

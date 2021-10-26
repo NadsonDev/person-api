@@ -12,6 +12,7 @@ public class PhoneUtils {
 	
 	public static PhoneDTO createFakeDTO() {
 		return PhoneDTO.builder()
+				.id(1L)
 				.number(PHONE_NUMBER)
 				.type(PHONE_TYPE)
 				.build();
